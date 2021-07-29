@@ -2,16 +2,16 @@ const http = require("http");
 const fs = require("fs");
 
 const server = http.createServer(function (req, res) {
-  //hola mundo
+  //leer y enviar archivos asincrono
   if (req.url === "/") {
-    res.write("Hola mundo!");
-    res.end();
-    // leer y enviar archivo html Sincrono
-  } else if (req.url === "/sincrono") {
-    return res.end(fs.readFileSync("HolaSincrono.html"));
-    // leer y enviar archivo html Asincrono
-  } else if (req.url === "/asincrono") {
-    fs.readFile("HolaAsincrono.html", function (error, html) {
+    fs.readFile("archivoPrueba1.html", function (error, html) {
+      if (error) {
+        throw error;
+      }
+      res.end(html);
+    });
+  } else if (req.url === "/otro") {
+    fs.readFile("archivoPrueba2.html", function (error, html) {
       if (error) {
         throw error;
       }
